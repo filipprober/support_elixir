@@ -181,6 +181,25 @@ defmodule Support.String do
   end
 
   @doc """
+  Make a string's first character uppercase.
+
+  ## Examples
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.ucfirst("support")
+      "Support"
+  """
+  @doc since: "0.3.0"
+  def ucfirst(value) when is_binary(value) do
+    case String.graphemes(value) do
+      [] -> ""
+      [first_char | rest] -> upper(first_char) <> Enum.join(rest)
+    end
+  end
+
+  @doc """
   Convert the given string to upper-case.
 
   ## Examples

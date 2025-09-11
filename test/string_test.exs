@@ -81,6 +81,14 @@ defmodule StringTest do
     assert "❤MultiByte☆" == String.reverse("☆etyBitluM❤")
   end
 
+  test "ucfirst" do
+    assert "" == String.ucfirst("")
+    assert "Support" == String.ucfirst("support")
+    assert "Elixir support" == String.ucfirst("elixir support")
+    assert "Мама" == String.ucfirst("мама")
+    assert "Мама мыла раму" == String.ucfirst("мама мыла раму")
+  end
+
   test "upper" do
     assert "FOO BAR BAZ" == String.upper("foo bar baz")
     assert "FOO BAR BAZ" == String.upper("foO bAr BaZ")
