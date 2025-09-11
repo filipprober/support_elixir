@@ -62,6 +62,13 @@ defmodule StringTest do
     assert "yvette" == String.before_last("yvette\tyv0et0te", "\t")
   end
 
+  test "kebab" do
+    assert "support-package" == String.kebab("SupportPackage")
+    assert "support-package" == String.kebab("Support Package")
+    assert "support❤-package" == String.kebab("Support ❤ Package")
+    assert "" == String.kebab("")
+  end
+
   test "lcfirst" do
     assert "" == String.lcfirst("")
     assert "support" == String.lcfirst("Support")

@@ -121,6 +121,22 @@ defmodule Support.String do
   end
 
   @doc """
+  Convert a string to kebab case.
+
+  ## Examples
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.kebab("Elixir Package")
+      "elixir-package"
+  """
+  @doc since: "0.3.0"
+  def kebab(value) when is_binary(value) do
+    snake(value, "-")
+  end
+
+  @doc """
   Convert the first character of the given string to lower-case.
 
   ## Examples
