@@ -21,3 +21,6 @@ support_elixir-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Ignores all files named "DS_Store" in the repository
+.DS_Store
