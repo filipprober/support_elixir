@@ -1,6 +1,6 @@
 # Release Notes for 0.x
 
-## [Unreleased](https://github.com/filipprober/support_elixir/compare/0.2.0...0.x)
+## [Unreleased](https://github.com/filipprober/support_elixir/compare/v0.2.0...0.x)
 
 ## 0.2.0
 
