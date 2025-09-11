@@ -28,6 +28,37 @@ defmodule Support.String do
   end
 
   @doc """
+  Return the remainder of a string after the last occurrence of a given value.
+
+  ## Examples
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.after_last("Elixir Package Elixir", "Elixir ")
+      "Package Elixir"
+  """
+  @doc since: "0.2.0"
+  def after_last(value, search) when is_binary(value) and (is_binary(search) or is_integer(search)) do
+    search_string = to_string(search)
+
+    cond do
+      search_string == "" ->
+        value
+      true ->
+        search_length = String.length(search_string)
+        value_length = String.length(value)
+
+        # Start from the last possible position and work backwards
+        Enum.find_value((value_length - search_length)..0//-1, value, fn start_pos ->
+          if String.slice(value, start_pos, search_length) == search_string do
+            String.slice(value, start_pos + search_length, value_length)
+          end
+        end)
+    end
+  end
+
+  @doc """
   Reverse the given string.
 
   ## Examples
