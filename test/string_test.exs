@@ -46,6 +46,22 @@ defmodule StringTest do
     assert "" == String.before("@foo@bar.com", "@")
   end
 
+  test "before_last" do
+    assert "yve" == String.before_last("yvette", "tte")
+    assert "yvet" == String.before_last("yvette", "t")
+    assert "ééé " == String.before_last("ééé yvette", "yve")
+    assert "" == String.before_last("yvette", "yve")
+    assert "yvette" == String.before_last("yvette", "xxxx")
+    assert "yvette" == String.before_last("yvette", "")
+    assert "yv0et" == String.before_last("yv0et0te", "0")
+    assert "yv0et" == String.before_last("yv0et0te", 0)
+    assert "yv2et" == String.before_last("yv2et2te", 2)
+    assert "" == String.before_last("", "test")
+    assert "" == String.before_last("yvette", "yvette")
+    assert "support" == String.before_last("support package", " ")
+    assert "yvette" == String.before_last("yvette\tyv0et0te", "\t")
+  end
+
   test "reverse" do
     assert "FooBar" == String.reverse("raBooF")
     assert "Teniszütő" == String.reverse("őtüzsineT")
