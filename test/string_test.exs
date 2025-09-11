@@ -81,6 +81,18 @@ defmodule StringTest do
     assert "❤MultiByte☆" == String.reverse("☆etyBitluM❤")
   end
 
+  test "snake" do
+    assert "e_l_i_x_i_r_package" == String.snake("ELIXIRPackage")
+    assert "elixir_framework" == String.snake("ElixirFramework")
+    assert "elixir package" == String.snake("ElixirPackage", " ")
+    assert "elixir_framework" == String.snake("Elixir   Framework")
+
+    assert "foo-bar" == String.snake("foo-bar")
+    assert "foo-_bar" == String.snake("Foo-Bar")
+    assert "foo__bar" == String.snake("Foo_Bar")
+    assert "żółtałódka" == String.snake("ŻółtaŁódka")
+  end
+
   test "ucfirst" do
     assert "" == String.ucfirst("")
     assert "Support" == String.ucfirst("support")

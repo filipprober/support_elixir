@@ -181,6 +181,32 @@ defmodule Support.String do
   end
 
   @doc """
+  Convert a string to snake case.
+
+  ## Examples
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.snake("Elixir Package")
+      "elixir_package"
+
+      iex> String.snake("Elixir Package", "-")
+      "elixir-package"
+  """
+  @doc since: "0.3.0"
+  def snake(value, delimiter \\ "_") when is_binary(value) and is_binary(delimiter) do
+    if value != String.downcase(value) do
+      value
+      |> String.replace(~r/\s+/u, "")
+      |> String.replace(~r/(.)(?=[A-Z])/u, "\\1#{delimiter}")
+      |> lower()
+    else
+      value
+    end
+  end
+
+  @doc """
   Make a string's first character uppercase.
 
   ## Examples
