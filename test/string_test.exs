@@ -139,6 +139,14 @@ defmodule StringTest do
     assert "❤MultiByte☆" == String.reverse("☆etyBitluM❤")
   end
 
+  test "singular" do
+    assert "cat" == String.singular("cats")
+    assert "Dog" == String.singular("Dogs")
+    assert "Tomato" == String.singular("Tomatoes")
+    assert "UserGroup" == String.singular("UserGroups")
+    assert "ProductCategory" == String.singular("ProductCategories")
+  end
+
   test "snake" do
     assert "e_l_i_x_i_r_package" == String.snake("ELIXIRPackage")
     assert "elixir_framework" == String.snake("ElixirFramework")

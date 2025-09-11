@@ -275,6 +275,25 @@ defmodule Support.String do
   end
 
   @doc """
+  Get the singular form of an English word.
+
+  ## Examples
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.singular("people")
+      "person"
+
+      iex> String.singular("Users")
+      "User"
+  """
+  @doc since: "0.3.0"
+  def singular(word) when is_binary(word) do
+    Support.Inflector.singularize(word)
+  end
+
+  @doc """
   Convert a string to snake case.
 
   ## Examples
