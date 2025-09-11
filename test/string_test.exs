@@ -62,6 +62,23 @@ defmodule StringTest do
     assert "yvette" == String.before_last("yvette\tyv0et0te", "\t")
   end
 
+  test "between" do
+    assert "abc" == String.between("abc", "", "c")
+    assert "abc" == String.between("abc", "a", "")
+    assert "abc" == String.between("abc", "", "")
+    assert "b" == String.between("abc", "a", "c")
+    assert "b" == String.between("dddabc", "a", "c")
+    assert "b" == String.between("abcddd", "a", "c")
+    assert "b" == String.between("dddabcddd", "a", "c")
+    assert "nn" == String.between("hannah", "ha", "ah")
+    assert "a]ab[b" == String.between("[a]ab[b]", "[", "]")
+    assert "foo" == String.between("foofoobar", "foo", "bar")
+    assert "bar" == String.between("foobarbar", "foo", "bar")
+    assert "234" == String.between("12345", 1, 5)
+    assert "45" == String.between("123456789", "123", "6789")
+    assert "nothing" == String.between("nothing", "foo", "bar")
+  end
+
   test "kebab" do
     assert "support-package" == String.kebab("SupportPackage")
     assert "support-package" == String.kebab("Support Package")
