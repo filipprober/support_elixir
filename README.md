@@ -1,6 +1,24 @@
 # Support
 
-A support library for Elixir projects.
+A collection of helper methods for Elixir projects.
+
+## Installation
+
+Add `support` to the list of dependencies in your `mix.exs` file:
+
+```elixir
+def deps do
+  [
+    {:support, "~> 0.3.0"}
+  ]
+end
+```
+
+Then run `mix deps.get` to fetch the new dependency.
+
+## Documentation
+
+Full documentation is available at [hexdocs.pm](https://hexdocs.pm/support/).
 
 ## License
 
