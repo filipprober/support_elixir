@@ -121,6 +121,22 @@ defmodule Support.String do
   end
 
   @doc """
+  Convert the given string to lower-case.
+
+  ## Examples
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.lower("Elixir Package")
+      "elixir package"
+  """
+  @doc since: "0.3.0"
+  def lower(value) when is_binary(value) do
+    String.downcase(value)
+  end
+
+  @doc """
   Reverse the given string.
 
   ## Examples

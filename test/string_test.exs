@@ -62,6 +62,11 @@ defmodule StringTest do
     assert "yvette" == String.before_last("yvette\tyv0et0te", "\t")
   end
 
+  test "lower" do
+    assert "foo bar baz" == String.lower("FOO BAR BAZ")
+    assert "foo bar baz" == String.lower("foO bAr BaZ")
+  end
+
   test "reverse" do
     assert "FooBar" == String.reverse("raBooF")
     assert "Teniszütő" == String.reverse("őtüzsineT")
