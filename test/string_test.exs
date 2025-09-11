@@ -62,6 +62,14 @@ defmodule StringTest do
     assert "yvette" == String.before_last("yvette\tyv0et0te", "\t")
   end
 
+  test "lcfirst" do
+    assert "" == String.lcfirst("")
+    assert "support" == String.lcfirst("Support")
+    assert "elixir support" == String.lcfirst("Elixir support")
+    assert "мама" == String.lcfirst("Мама")
+    assert "мама мыла раму" == String.lcfirst("Мама мыла раму")
+  end
+
   test "lower" do
     assert "foo bar baz" == String.lower("FOO BAR BAZ")
     assert "foo bar baz" == String.lower("foO bAr BaZ")

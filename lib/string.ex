@@ -121,6 +121,25 @@ defmodule Support.String do
   end
 
   @doc """
+  Convert the first character of the given string to lower-case.
+
+  ## Examples
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.lcfirst("Support")
+      "support"
+  """
+  @doc since: "0.3.0"
+  def lcfirst(value) when is_binary(value) do
+    case String.graphemes(value) do
+      [] -> ""
+      [first_char | rest] -> lower(first_char) <> Enum.join(rest)
+    end
+  end
+
+  @doc """
   Convert the given string to lower-case.
 
   ## Examples
