@@ -67,4 +67,9 @@ defmodule StringTest do
     assert "Teniszütő" == String.reverse("őtüzsineT")
     assert "❤MultiByte☆" == String.reverse("☆etyBitluM❤")
   end
+
+  test "upper" do
+    assert "FOO BAR BAZ" == String.upper("foo bar baz")
+    assert "FOO BAR BAZ" == String.upper("foO bAr BaZ")
+  end
 end

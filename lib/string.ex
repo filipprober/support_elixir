@@ -144,4 +144,20 @@ defmodule Support.String do
     |> Enum.reverse()
     |> Enum.join()
   end
+
+  @doc """
+  Convert the given string to upper-case.
+
+  ## Examples
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.upper("Elixir Package")
+      "ELIXIR PACKAGE"
+  """
+  @doc since: "0.3.0"
+  def upper(value) when is_binary(value) do
+    String.upcase(value)
+  end
 end
