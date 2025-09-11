@@ -113,6 +113,26 @@ defmodule StringTest do
     assert "foo bar baz" == String.lower("foO bAr BaZ")
   end
 
+  test "plural" do
+    assert "cats" == String.plural("cat")
+    assert "Dogs" == String.plural("Dog")
+    assert "Tomatoes" == String.plural("Tomato")
+    assert "UserGroups" == String.plural("UserGroup")
+    assert "ProductCategories" == String.plural("ProductCategory")
+
+    assert "cat" == String.plural("cat", 1)
+    assert "Dog" == String.plural("Dog", 1)
+    assert "Tomato" == String.plural("Tomato", 1)
+    assert "UserGroup" == String.plural("UserGroup", 1)
+    assert "ProductCategory" == String.plural("ProductCategory", 1)
+
+    assert "cats" == String.plural("cat", -1)
+    assert "Dogs" == String.plural("Dog", -1)
+    assert "Tomatoes" == String.plural("Tomato", -1)
+    assert "UserGroups" == String.plural("UserGroup", -1)
+    assert "ProductCategories" == String.plural("ProductCategory", -1)
+  end
+
   test "reverse" do
     assert "FooBar" == String.reverse("raBooF")
     assert "Teniszütő" == String.reverse("őtüzsineT")

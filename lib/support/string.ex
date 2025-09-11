@@ -227,6 +227,29 @@ defmodule Support.String do
   end
 
   @doc """
+  Get the plural form of an English word.
+
+  ## Examples
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.plural("person")
+      "people"
+
+      iex> String.plural("User")
+      "Users"
+  """
+  @doc since: "0.3.0"
+  def plural(word, count \\ 2) when is_binary(word) and is_integer(count) do
+    if count == 1 do
+      word
+    else
+      Support.Inflector.pluralize(word)
+    end
+  end
+
+  @doc """
   Reverse the given string.
 
   ## Examples
