@@ -148,6 +148,34 @@ defmodule Support.String do
   end
 
   @doc """
+  Get the smallest possible portion of a string between two given values.
+
+  ## Examples
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.between_first("Elixir Package", "E", "i")
+      "l"
+
+  """
+  @doc since: "0.3.0"
+  def between_first(value, from, to)
+      when is_binary(value) and (is_binary(from) or is_integer(from)) and
+             (is_binary(to) or is_integer(to)) do
+    from = to_string(from)
+    to = to_string(to)
+
+    if from == "" or to == "" do
+      value
+    else
+      value
+      |> Support.String.after(from)
+      |> Support.String.before(to)
+    end
+  end
+
+  @doc """
   Convert a string to kebab case.
 
   ## Examples

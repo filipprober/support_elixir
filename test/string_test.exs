@@ -79,6 +79,20 @@ defmodule StringTest do
     assert "nothing" == String.between("nothing", "foo", "bar")
   end
 
+  test "between_first" do
+    assert "abc" == String.between_first("abc", "", "c")
+    assert "abc" == String.between_first("abc", "a", "")
+    assert "abc" == String.between_first("abc", "", "")
+    assert "b" == String.between_first("abc", "a", "c")
+    assert "b" == String.between_first("dddabc", "a", "c")
+    assert "b" == String.between_first("abcddd", "a", "c")
+    assert "b" == String.between_first("dddabcddd", "a", "c")
+    assert "nn" == String.between_first("hannah", "ha", "ah")
+    assert "a" == String.between_first("[a]ab[b]", "[", "]")
+    assert "foo" == String.between_first("foofoobar", "foo", "bar")
+    assert "" == String.between_first("foobarbar", "foo", "bar")
+  end
+
   test "kebab" do
     assert "support-package" == String.kebab("SupportPackage")
     assert "support-package" == String.kebab("Support Package")
