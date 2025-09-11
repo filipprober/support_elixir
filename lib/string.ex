@@ -39,12 +39,14 @@ defmodule Support.String do
       "Package Elixir"
   """
   @doc since: "0.2.0"
-  def after_last(value, search) when is_binary(value) and (is_binary(search) or is_integer(search)) do
+  def after_last(value, search)
+      when is_binary(value) and (is_binary(search) or is_integer(search)) do
     search_string = to_string(search)
 
     cond do
       search_string == "" ->
         value
+
       true ->
         search_length = String.length(search_string)
         value_length = String.length(value)
@@ -55,6 +57,33 @@ defmodule Support.String do
             String.slice(value, start_pos + search_length, value_length)
           end
         end)
+    end
+  end
+
+  @doc """
+  Get the portion of a string before the first occurrence of a given value.
+
+  ## Examples
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.before("Elixir Package", " Package")
+      "Elixir"
+  """
+  @doc since: "0.2.0"
+  def before(value, search) when is_binary(value) and (is_binary(search) or is_integer(search)) do
+    search_string = to_string(search)
+
+    cond do
+      search_string == "" ->
+        value
+
+      true ->
+        case String.split(value, search_string, parts: 2) do
+          [part_before, _] -> part_before
+          [_] -> value
+        end
     end
   end
 

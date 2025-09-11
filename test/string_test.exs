@@ -29,6 +29,23 @@ defmodule StringTest do
     assert "foo" == String.after_last("----foo", "---")
   end
 
+  test "before" do
+    assert "han" == String.before("hannah", "nah")
+    assert "ha" == String.before("hannah", "n")
+    assert "ééé" == String.before("ééé", "han")
+    assert "hannah" == String.before("hannah", "xxxx")
+    assert "hannah" == String.before("hannah", "")
+    assert "han" == String.before("han0nah", "0")
+    assert "han" == String.before("han0nah", 0)
+    assert "han" == String.before("han2nah", 2)
+    assert "" == String.before("", "")
+    assert "" == String.before("a", "a")
+    assert "" == String.before("a", "a")
+    assert "foo" == String.before("foo@bar.com", "@")
+    assert "foo" == String.before("foo@@bar.com", "@")
+    assert "" == String.before("@foo@bar.com", "@")
+  end
+
   test "reverse" do
     assert "FooBar" == String.reverse("raBooF")
     assert "Teniszütő" == String.reverse("őtüzsineT")
