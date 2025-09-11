@@ -278,6 +278,28 @@ defmodule Support.String do
   end
 
   @doc """
+  Take the first or last `limit` characters of a string.
+
+  ## Examples
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.take("Elixir Package", 7)
+      "Elixir "
+
+      iex> String.take("Elixir Package", -7)
+      "Package"
+  """
+  @doc since: "0.3.0"
+  def take(value, limit) when is_binary(value) and is_integer(limit) do
+    cond do
+      limit >= 0 -> String.slice(value, 0, limit)
+      limit < 0 -> String.slice(value, limit, -limit)
+    end
+  end
+
+  @doc """
   Make a string's first character uppercase.
 
   ## Examples

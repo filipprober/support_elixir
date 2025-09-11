@@ -131,6 +131,15 @@ defmodule StringTest do
     assert "żółtałódka" == String.snake("ŻółtaŁódka")
   end
 
+  test "take" do
+    assert "ab" == String.take("abcdef", 2)
+    assert "ef" == String.take("abcdef", -2)
+    assert "" == String.take("abcdef", 0)
+    assert "" == String.take("", 2)
+    assert "abcdef" == String.take("abcdef", 10)
+    assert "ü" == String.take("üöä", 1)
+  end
+
   test "ucfirst" do
     assert "" == String.ucfirst("")
     assert "Support" == String.ucfirst("support")
