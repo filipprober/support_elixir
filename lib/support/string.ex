@@ -2,7 +2,7 @@ defmodule Support.String do
   @doc """
   Return the remainder of a string after the first occurrence of a given value.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -11,6 +11,7 @@ defmodule Support.String do
       "Package"
   """
   @doc since: "0.2.0"
+  @spec unquote(:after)(String.t(), String.t() | integer()) :: String.t()
   def unquote(:after)(value, search)
       when is_binary(value) and (is_binary(search) or is_integer(search)) do
     search_string = to_string(search)
@@ -30,7 +31,7 @@ defmodule Support.String do
   @doc """
   Return the remainder of a string after the last occurrence of a given value.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -39,6 +40,7 @@ defmodule Support.String do
       "Package Elixir"
   """
   @doc since: "0.2.0"
+  @spec after_last(String.t(), String.t() | integer()) :: String.t()
   def after_last(value, search)
       when is_binary(value) and (is_binary(search) or is_integer(search)) do
     search_string = to_string(search)
@@ -51,7 +53,6 @@ defmodule Support.String do
         search_length = String.length(search_string)
         value_length = String.length(value)
 
-        # Start from the last possible position and work backwards
         Enum.find_value((value_length - search_length)..0//-1, value, fn start_pos ->
           if String.slice(value, start_pos, search_length) == search_string do
             String.slice(value, start_pos + search_length, value_length)
@@ -63,7 +64,7 @@ defmodule Support.String do
   @doc """
   Get the portion of a string before the first occurrence of a given value.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -72,6 +73,7 @@ defmodule Support.String do
       "Elixir"
   """
   @doc since: "0.2.0"
+  @spec before(String.t(), String.t() | integer()) :: String.t()
   def before(value, search) when is_binary(value) and (is_binary(search) or is_integer(search)) do
     search_string = to_string(search)
 
@@ -90,7 +92,7 @@ defmodule Support.String do
   @doc """
   Get the portion of a string before the last occurrence of a given value.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -99,6 +101,7 @@ defmodule Support.String do
       "Elixir Package"
   """
   @doc since: "0.2.0"
+  @spec before_last(String.t(), String.t() | integer()) :: String.t()
   def before_last(value, search)
       when is_binary(value) and (is_binary(search) or is_integer(search)) do
     search_string = to_string(search)
@@ -111,7 +114,6 @@ defmodule Support.String do
         search_length = String.length(search_string)
         value_length = String.length(value)
 
-        # Start from the last possible position and work backwards
         Enum.find_value((value_length - search_length)..0//-1, value, fn start_pos ->
           if String.slice(value, start_pos, search_length) == search_string do
             String.slice(value, 0, start_pos)
@@ -123,7 +125,7 @@ defmodule Support.String do
   @doc """
   Get the portion of a string between two given values.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -132,6 +134,7 @@ defmodule Support.String do
       "lixi"
   """
   @doc since: "0.3.0"
+  @spec between(String.t(), String.t() | integer(), String.t() | integer()) :: String.t()
   def between(value, from, to)
       when is_binary(value) and (is_binary(from) or is_integer(from)) and
              (is_binary(to) or is_integer(to)) do
@@ -150,7 +153,7 @@ defmodule Support.String do
   @doc """
   Get the smallest possible portion of a string between two given values.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -160,6 +163,8 @@ defmodule Support.String do
 
   """
   @doc since: "0.3.0"
+  @spec between_first(String.t(), String.t() | integer(), String.t() | integer()) ::
+          String.t()
   def between_first(value, from, to)
       when is_binary(value) and (is_binary(from) or is_integer(from)) and
              (is_binary(to) or is_integer(to)) do
@@ -178,7 +183,7 @@ defmodule Support.String do
   @doc """
   Convert a string to kebab case.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -187,6 +192,7 @@ defmodule Support.String do
       "elixir-package"
   """
   @doc since: "0.3.0"
+  @spec kebab(String.t()) :: String.t()
   def kebab(value) when is_binary(value) do
     snake(value, "-")
   end
@@ -194,7 +200,7 @@ defmodule Support.String do
   @doc """
   Convert the first character of the given string to lower-case.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -203,6 +209,7 @@ defmodule Support.String do
       "support"
   """
   @doc since: "0.3.0"
+  @spec lcfirst(String.t()) :: String.t()
   def lcfirst(value) when is_binary(value) do
     case String.graphemes(value) do
       [] -> ""
@@ -213,7 +220,7 @@ defmodule Support.String do
   @doc """
   Convert the given string to lower-case.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -222,6 +229,7 @@ defmodule Support.String do
       "elixir package"
   """
   @doc since: "0.3.0"
+  @spec lower(String.t()) :: String.t()
   def lower(value) when is_binary(value) do
     String.downcase(value)
   end
@@ -229,7 +237,7 @@ defmodule Support.String do
   @doc """
   Get the plural form of an English word.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -241,6 +249,7 @@ defmodule Support.String do
       "Users"
   """
   @doc since: "0.3.0"
+  @spec plural(String.t(), integer()) :: String.t()
   def plural(word, count \\ 2) when is_binary(word) and is_integer(count) do
     if count == 1 do
       word
@@ -252,7 +261,7 @@ defmodule Support.String do
   @doc """
   Reverse the given string.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -267,6 +276,7 @@ defmodule Support.String do
       "❤MultiByte☆"
   """
   @doc since: "0.1.0"
+  @spec reverse(String.t()) :: String.t()
   def reverse(value) when is_binary(value) do
     value
     |> String.graphemes()
@@ -277,7 +287,7 @@ defmodule Support.String do
   @doc """
   Get the singular form of an English word.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -289,6 +299,7 @@ defmodule Support.String do
       "User"
   """
   @doc since: "0.3.0"
+  @spec singular(String.t()) :: String.t()
   def singular(word) when is_binary(word) do
     Support.Inflector.singularize(word)
   end
@@ -296,7 +307,7 @@ defmodule Support.String do
   @doc """
   Convert a string to snake case.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -308,6 +319,7 @@ defmodule Support.String do
       "elixir-package"
   """
   @doc since: "0.3.0"
+  @spec snake(String.t(), String.t()) :: String.t()
   def snake(value, delimiter \\ "_") when is_binary(value) and is_binary(delimiter) do
     if value != String.downcase(value) do
       value
@@ -322,7 +334,7 @@ defmodule Support.String do
   @doc """
   Take the first or last `limit` characters of a string.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -334,6 +346,7 @@ defmodule Support.String do
       "Package"
   """
   @doc since: "0.3.0"
+  @spec take(String.t(), integer()) :: String.t()
   def take(value, limit) when is_binary(value) and is_integer(limit) do
     cond do
       limit >= 0 -> String.slice(value, 0, limit)
@@ -344,7 +357,7 @@ defmodule Support.String do
   @doc """
   Convert a string to the specified case.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -361,6 +374,8 @@ defmodule Support.String do
       iex> String.to_case("Elixir Package", :lower)
       "elixir package"
   """
+  @doc since: "0.3.1"
+  @spec to_case(String.t(), atom()) :: String.t()
   def to_case(value, case) when is_binary(value) and case in [:kebab, :snake, :upper, :lower] do
     case case do
       :kebab -> kebab(value)
@@ -370,6 +385,21 @@ defmodule Support.String do
     end
   end
 
+  @doc """
+  Convert a string to the specified case with a custom delimiter.
+
+  ## Usage
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.to_case("Elixir Package", "_", :snake)
+      "elixir_package"
+
+      iex> String.to_case("Elixir Package", " ?? ", :snake)
+      "elixir ?? package"
+  """
+  @spec to_case(String.t(), String.t(), atom()) :: String.t()
   def to_case(value, delimeter, case)
       when is_binary(value) and is_binary(delimeter) and case in [:snake] do
     case case do
@@ -380,7 +410,7 @@ defmodule Support.String do
   @doc """
   Make a string's first character uppercase.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -389,6 +419,7 @@ defmodule Support.String do
       "Support"
   """
   @doc since: "0.3.0"
+  @spec ucfirst(String.t()) :: String.t()
   def ucfirst(value) when is_binary(value) do
     case String.graphemes(value) do
       [] -> ""
@@ -399,7 +430,7 @@ defmodule Support.String do
   @doc """
   Convert the given string to upper-case.
 
-  ## Examples
+  ## Usage
 
       iex> alias Support.String
       Support.String
@@ -408,6 +439,7 @@ defmodule Support.String do
       "ELIXIR PACKAGE"
   """
   @doc since: "0.3.0"
+  @spec upper(String.t()) :: String.t()
   def upper(value) when is_binary(value) do
     String.upcase(value)
   end
