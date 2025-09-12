@@ -5,7 +5,7 @@ defmodule StringTest do
 
   doctest Support.String
 
-  test "after" do
+  test "after/2" do
     assert "nah" == String.after("hannah", "han")
     assert "nah" == String.after("hannah", "n")
     assert "nah" == String.after("ééé hannah", "han")
@@ -16,7 +16,7 @@ defmodule StringTest do
     assert "nah" == String.after("han2nah", 2)
   end
 
-  test "after_last" do
+  test "after_last/2" do
     assert "tte" == String.after_last("yvette", "yve")
     assert "e" == String.after_last("yvette", "t")
     assert "e" == String.after_last("ééé yvette", "t")
@@ -29,7 +29,7 @@ defmodule StringTest do
     assert "foo" == String.after_last("----foo", "---")
   end
 
-  test "before" do
+  test "before/2" do
     assert "han" == String.before("hannah", "nah")
     assert "ha" == String.before("hannah", "n")
     assert "ééé" == String.before("ééé", "han")
@@ -46,7 +46,7 @@ defmodule StringTest do
     assert "" == String.before("@foo@bar.com", "@")
   end
 
-  test "before_last" do
+  test "before_last/2" do
     assert "yve" == String.before_last("yvette", "tte")
     assert "yvet" == String.before_last("yvette", "t")
     assert "ééé " == String.before_last("ééé yvette", "yve")
@@ -62,7 +62,7 @@ defmodule StringTest do
     assert "yvette" == String.before_last("yvette\tyv0et0te", "\t")
   end
 
-  test "between" do
+  test "between/3" do
     assert "abc" == String.between("abc", "", "c")
     assert "abc" == String.between("abc", "a", "")
     assert "abc" == String.between("abc", "", "")
@@ -79,7 +79,7 @@ defmodule StringTest do
     assert "nothing" == String.between("nothing", "foo", "bar")
   end
 
-  test "between_first" do
+  test "between_first/3" do
     assert "abc" == String.between_first("abc", "", "c")
     assert "abc" == String.between_first("abc", "a", "")
     assert "abc" == String.between_first("abc", "", "")
@@ -93,14 +93,14 @@ defmodule StringTest do
     assert "" == String.between_first("foobarbar", "foo", "bar")
   end
 
-  test "kebab" do
+  test "kebab/1" do
     assert "support-package" == String.kebab("SupportPackage")
     assert "support-package" == String.kebab("Support Package")
     assert "support❤-package" == String.kebab("Support ❤ Package")
     assert "" == String.kebab("")
   end
 
-  test "lcfirst" do
+  test "lcfirst/1" do
     assert "" == String.lcfirst("")
     assert "support" == String.lcfirst("Support")
     assert "elixir support" == String.lcfirst("Elixir support")
@@ -108,18 +108,20 @@ defmodule StringTest do
     assert "мама мыла раму" == String.lcfirst("Мама мыла раму")
   end
 
-  test "lower" do
+  test "lower/1" do
     assert "foo bar baz" == String.lower("FOO BAR BAZ")
     assert "foo bar baz" == String.lower("foO bAr BaZ")
   end
 
-  test "plural" do
+  test "plural/1" do
     assert "cats" == String.plural("cat")
     assert "Dogs" == String.plural("Dog")
     assert "Tomatoes" == String.plural("Tomato")
     assert "UserGroups" == String.plural("UserGroup")
     assert "ProductCategories" == String.plural("ProductCategory")
+  end
 
+  test "plural/2" do
     assert "cat" == String.plural("cat", 1)
     assert "Dog" == String.plural("Dog", 1)
     assert "Tomato" == String.plural("Tomato", 1)
@@ -133,13 +135,13 @@ defmodule StringTest do
     assert "ProductCategories" == String.plural("ProductCategory", -1)
   end
 
-  test "reverse" do
+  test "reverse/1" do
     assert "FooBar" == String.reverse("raBooF")
     assert "Teniszütő" == String.reverse("őtüzsineT")
     assert "❤MultiByte☆" == String.reverse("☆etyBitluM❤")
   end
 
-  test "singular" do
+  test "singular/1" do
     assert "cat" == String.singular("cats")
     assert "Dog" == String.singular("Dogs")
     assert "Tomato" == String.singular("Tomatoes")
@@ -147,10 +149,9 @@ defmodule StringTest do
     assert "ProductCategory" == String.singular("ProductCategories")
   end
 
-  test "snake" do
+  test "snake/1" do
     assert "e_l_i_x_i_r_package" == String.snake("ELIXIRPackage")
     assert "elixir_framework" == String.snake("ElixirFramework")
-    assert "elixir package" == String.snake("ElixirPackage", " ")
     assert "elixir_framework" == String.snake("Elixir   Framework")
 
     assert "foo-bar" == String.snake("foo-bar")
@@ -159,7 +160,11 @@ defmodule StringTest do
     assert "żółtałódka" == String.snake("ŻółtaŁódka")
   end
 
-  test "take" do
+  test "snake/2" do
+    assert "elixir package" == String.snake("ElixirPackage", " ")
+  end
+
+  test "take/2" do
     assert "ab" == String.take("abcdef", 2)
     assert "ef" == String.take("abcdef", -2)
     assert "" == String.take("abcdef", 0)
@@ -168,7 +173,7 @@ defmodule StringTest do
     assert "ü" == String.take("üöä", 1)
   end
 
-  describe "to_case" do
+  describe "to_case/2" do
     test "kebab" do
       assert "support-package" == String.to_case("SupportPackage", :kebab)
       assert "support-package" == String.to_case("Support Package", :kebab)
@@ -179,7 +184,6 @@ defmodule StringTest do
     test "snake" do
       assert "e_l_i_x_i_r_package" == String.to_case("ELIXIRPackage", :snake)
       assert "elixir_framework" == String.to_case("ElixirFramework", :snake)
-      assert "elixir package" == String.to_case("ElixirPackage", " ", :snake)
       assert "elixir_framework" == String.to_case("Elixir   Framework", :snake)
 
       assert "foo-bar" == String.to_case("foo-bar", :snake)
@@ -199,7 +203,13 @@ defmodule StringTest do
     end
   end
 
-  test "ucfirst" do
+  describe "to_case/3" do
+    test "snake" do
+      assert "elixir package" == String.to_case("ElixirPackage", " ", :snake)
+    end
+  end
+
+  test "ucfirst/1" do
     assert "" == String.ucfirst("")
     assert "Support" == String.ucfirst("support")
     assert "Elixir support" == String.ucfirst("elixir support")
@@ -207,7 +217,7 @@ defmodule StringTest do
     assert "Мама мыла раму" == String.ucfirst("мама мыла раму")
   end
 
-  test "upper" do
+  test "upper/1" do
     assert "FOO BAR BAZ" == String.upper("foo bar baz")
     assert "FOO BAR BAZ" == String.upper("foO bAr BaZ")
   end
