@@ -168,6 +168,37 @@ defmodule StringTest do
     assert "ü" == String.take("üöä", 1)
   end
 
+  describe "to_case" do
+    test "kebab" do
+      assert "support-package" == String.to_case("SupportPackage", :kebab)
+      assert "support-package" == String.to_case("Support Package", :kebab)
+      assert "support❤-package" == String.to_case("Support ❤ Package", :kebab)
+      assert "" == String.to_case("", :kebab)
+    end
+
+    test "snake" do
+      assert "e_l_i_x_i_r_package" == String.to_case("ELIXIRPackage", :snake)
+      assert "elixir_framework" == String.to_case("ElixirFramework", :snake)
+      assert "elixir package" == String.to_case("ElixirPackage", " ", :snake)
+      assert "elixir_framework" == String.to_case("Elixir   Framework", :snake)
+
+      assert "foo-bar" == String.to_case("foo-bar", :snake)
+      assert "foo-_bar" == String.to_case("Foo-Bar", :snake)
+      assert "foo__bar" == String.to_case("Foo_Bar", :snake)
+      assert "żółtałódka" == String.to_case("ŻółtaŁódka", :snake)
+    end
+
+    test "upper" do
+      assert "FOO BAR BAZ" == String.to_case("foo bar baz", :upper)
+      assert "FOO BAR BAZ" == String.to_case("foO bAr BaZ", :upper)
+    end
+
+    test "lower" do
+      assert "foo bar baz" == String.to_case("FOO BAR BAZ", :lower)
+      assert "foo bar baz" == String.to_case("foO bAr BaZ", :lower)
+    end
+  end
+
   test "ucfirst" do
     assert "" == String.ucfirst("")
     assert "Support" == String.ucfirst("support")

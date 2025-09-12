@@ -342,6 +342,42 @@ defmodule Support.String do
   end
 
   @doc """
+  Convert a string to the specified case.
+
+  ## Examples
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.to_case("Elixir Package", :kebab)
+      "elixir-package"
+
+      iex> String.to_case("Elixir Package", :snake)
+      "elixir_package"
+
+      iex> String.to_case("Elixir Package", :upper)
+      "ELIXIR PACKAGE"
+
+      iex> String.to_case("Elixir Package", :lower)
+      "elixir package"
+  """
+  def to_case(value, case) when is_binary(value) and case in [:kebab, :snake, :upper, :lower] do
+    case case do
+      :kebab -> kebab(value)
+      :snake -> snake(value)
+      :upper -> upper(value)
+      :lower -> lower(value)
+    end
+  end
+
+  def to_case(value, delimeter, case)
+      when is_binary(value) and is_binary(delimeter) and case in [:snake] do
+    case case do
+      :snake -> snake(value, delimeter)
+    end
+  end
+
+  @doc """
   Make a string's first character uppercase.
 
   ## Examples
