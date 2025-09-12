@@ -10,7 +10,11 @@ defmodule SupportElixir.MixProject do
       deps: deps(),
       package: package(),
       name: "Support",
-      description: "A collection of helper methods for Elixir projects."
+      description: "A collection of helper methods for Elixir projects.",
+      docs: [
+        main: "readme",
+        extras: ["README.md", "CHANGELOG.md"]
+      ]
     ]
   end
 

@@ -4,25 +4,25 @@
 
 ## 0.3.0
 
-- Added `String.between()`
-- Added `String.between_first()`
-- Added `String.kebab()`
-- Added `String.lcfirst()`
-- Added `String.lower()`
-- Added `String.plural()`
-- Added `String.singular()`
-- Added `String.snake()`
-- Added `String.take()`
-- Added `String.ucfirst()`
-- Added `String.upper()`
+- Added `Support.String.between/3`
+- Added `Support.String.between_first/3`
+- Added `Support.String.kebab/1`
+- Added `Support.String.lcfirst/1`
+- Added `Support.String.lower/1`
+- Added `Support.String.plural/2`
+- Added `Support.String.singular/1`
+- Added `Support.String.snake/2`
+- Added `Support.String.take/2`
+- Added `Support.String.ucfirst/1`
+- Added `Support.String.upper/1`
 
 ## 0.2.0
 
-- Added `String.after()`
-- Added `String.after_last()`
-- Added `String.before()`
-- Added `String.before_last()`
+- Added `Support.String.after/2`
+- Added `Support.String.after_last/2`
+- Added `Support.String.before/2`
+- Added `Support.String.before_last/2`
 
 ## 0.1.0
 
-- Added `Support.String.reverse()`
+- Added `Support.String.reverse/1`
