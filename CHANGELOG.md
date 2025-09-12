@@ -1,6 +1,11 @@
 # Release Notes for 0.x
 
-## [Unreleased](https://github.com/filipprober/support_elixir/compare/v0.3.0...0.x)
+## [Unreleased](https://github.com/filipprober/support_elixir/compare/v0.3.1...0.x)
+
+## 0.3.1
+
+- Added `Support.String.to_case/2`
+- Added `Support.String.to_case/3`
 
 ## 0.3.0
 
