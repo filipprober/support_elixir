@@ -1,6 +1,10 @@
 # Release Notes for 0.x
 
-## [Unreleased](https://github.com/filipprober/support_elixir/compare/v0.3.1...0.x)
+## [Unreleased](https://github.com/filipprober/support_elixir/compare/v0.3.2...0.x)
+
+## 0.3.2
+
+- Added `Support.String.studly/1`
 
 ## 0.3.1
 

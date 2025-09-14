@@ -345,6 +345,7 @@ defmodule Support.String do
       iex> String.studly("elixir_s_u_p_p_o_r_t_library")
       "ElixirSUPPORTLibrary"
   """
+  @doc since: "0.3.2"
   @spec studly(String.t()) :: String.t()
   def studly(value) when is_binary(value) do
     value
