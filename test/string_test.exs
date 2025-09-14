@@ -164,6 +164,20 @@ defmodule StringTest do
     assert "elixir package" == String.snake("ElixirPackage", " ")
   end
 
+  test "studly/1" do
+    assert "ElixirSUPPORTLibrary" == String.studly("elixir_s_u_p_p_o_r_t_library")
+    assert "ElixirSupportLibrary" == String.studly("elixir_support_library")
+    assert "ElixirSupportLibrary" == String.studly("elixir-support-library")
+    assert "ElixirSupportLibrary" == String.studly("elixir  -_-  support  -_-  library  ")
+
+    assert "FooBar" == String.studly("fooBar")
+    assert "FooBar" == String.studly("foo_bar")
+    assert "FooBarBaz" == String.studly("foo-barBaz")
+    assert "FooBarBaz" == String.studly("foo-bar_baz")
+
+    assert "ÖffentlicheÜberraschungen" == String.studly("öffentliche-überraschungen")
+  end
+
   test "take/2" do
     assert "ab" == String.take("abcdef", 2)
     assert "ef" == String.take("abcdef", -2)

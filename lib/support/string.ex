@@ -332,6 +332,29 @@ defmodule Support.String do
   end
 
   @doc """
+  Convert a value to studly caps case.
+
+  ## Usage
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.studly("foo-bar")
+      "FooBar"
+
+      iex> String.studly("elixir_s_u_p_p_o_r_t_library")
+      "ElixirSUPPORTLibrary"
+  """
+  @spec studly(String.t()) :: String.t()
+  def studly(value) when is_binary(value) do
+    value
+    |> String.replace(["-", "_"], " ")
+    |> String.split()
+    |> Enum.map(&ucfirst/1)
+    |> Enum.join()
+  end
+
+  @doc """
   Take the first or last `limit` characters of a string.
 
   ## Usage
