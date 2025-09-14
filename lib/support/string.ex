@@ -181,6 +181,50 @@ defmodule Support.String do
   end
 
   @doc """
+  Determine if a given string contains all array values.
+
+  ## Usage
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.contains_all?("The quick brown fox", ["Quick", "Fox"])
+      false
+
+      iex> String.contains_all?("The quick brown fox", ["The", "fox"])
+      true
+
+  ## Ignore case
+
+  To ignore the case of the given string, you can pass in a third argument:
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.contains_all?("The quick brown fox", ["Quick", "Fox"], true)
+      true
+
+      iex> String.contains_all?("The quick brown fox", ["Quick", "Fox"], true)
+      true
+  """
+  def contains_all?(value, needles, ignore_case \\ false)
+      when is_binary(value) and is_list(needles) and is_boolean(ignore_case) do
+    case ignore_case do
+      true ->
+        lower_value = lower(value)
+
+        Enum.all?(needles, fn needle ->
+          String.contains?(lower_value, lower(to_string(needle)))
+        end)
+
+      false ->
+        Enum.all?(needles, fn needle ->
+          String.contains?(value, to_string(needle))
+        end)
+    end
+  end
+
+  @doc """
   Convert a string to kebab case.
 
   ## Usage

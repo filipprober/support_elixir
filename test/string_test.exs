@@ -93,6 +93,22 @@ defmodule StringTest do
     assert "" == String.between_first("foobarbar", "foo", "bar")
   end
 
+  test "contains_all?/3" do
+    assert false == String.contains_all?("Filip Prober", ["filip", "prober"])
+    assert false == String.contains_all?("Filip Prober", ["filip"])
+    assert false == String.contains_all?("Filip Prober", ["Filip", "xxx"])
+    assert true == String.contains_all?("Filip Prober", [])
+    assert true == String.contains_all?("Filip Prober", ["Filip", "Prober"])
+    assert true == String.contains_all?("Filip Prober", ["Prober"])
+
+    assert false == String.contains_all?("Filip Prober", ["Filip", "xxx"])
+    assert true == String.contains_all?("Filip Prober", ["filip", "prober"], true)
+    assert true == String.contains_all?("Filip Prober", ["filip"], true)
+    assert true == String.contains_all?("Filip Prober", [], true)
+    assert true == String.contains_all?("Filip Prober", ["Filip", "Prober"], true)
+    assert true == String.contains_all?("Filip Prober", ["Prober"], true)
+  end
+
   test "kebab/1" do
     assert "support-package" == String.kebab("SupportPackage")
     assert "support-package" == String.kebab("Support Package")
