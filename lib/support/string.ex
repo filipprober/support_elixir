@@ -207,6 +207,7 @@ defmodule Support.String do
       iex> String.contains_all?("The quick brown fox", ["Quick", "Fox"], true)
       true
   """
+  @doc since: "0.3.3"
   def contains_all?(value, needles, ignore_case \\ false)
       when is_binary(value) and is_list(needles) and is_boolean(ignore_case) do
     case ignore_case do

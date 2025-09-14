@@ -1,6 +1,10 @@
 # Release Notes for 0.x
 
-## [Unreleased](https://github.com/filipprober/support_elixir/compare/v0.3.2...0.x)
+## [Unreleased](https://github.com/filipprober/support_elixir/compare/v0.3.3...0.x)
+
+## 0.3.3
+
+- Added `Support.String.contains_all?/3`
 
 ## 0.3.2
 
