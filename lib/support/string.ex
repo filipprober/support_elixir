@@ -208,6 +208,7 @@ defmodule Support.String do
       true
   """
   @doc since: "0.3.3"
+  @spec contains_all?(String.t(), list(String.t() | integer()), boolean()) :: boolean()
   def contains_all?(value, needles, ignore_case \\ false)
       when is_binary(value) and is_list(needles) and is_boolean(ignore_case) do
     case ignore_case do
@@ -468,6 +469,7 @@ defmodule Support.String do
       iex> String.to_case("Elixir Package", " ?? ", :snake)
       "elixir ?? package"
   """
+  @doc since: "0.3.1"
   @spec to_case(String.t(), String.t(), atom()) :: String.t()
   def to_case(value, delimeter, case)
       when is_binary(value) and is_binary(delimeter) and case in [:snake] do
