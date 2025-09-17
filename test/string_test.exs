@@ -166,6 +166,15 @@ defmodule StringTest do
     assert "❤MultiByte☆" == String.reverse("☆etyBitluM❤")
   end
 
+  test "rtrim/1" do
+    assert " foo   bar" == String.rtrim(" foo   bar ")
+    assert "   123" == String.rtrim("   123   ")
+    assert "だ" == String.rtrim("だ")
+    assert "ム" == String.rtrim("ム")
+    assert "   だ" == String.rtrim("   だ   ")
+    assert "ム" == String.rtrim("ム   ")
+  end
+
   test "singular/1" do
     assert "cat" == String.singular("cats")
     assert "Dog" == String.singular("Dogs")

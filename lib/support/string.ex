@@ -347,6 +347,20 @@ defmodule Support.String do
   end
 
   @doc """
+  Remove all whitespace from the end of a string.
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.rtrim("   Elixir Package   ")
+      "   Elixir Package"
+  """
+  @spec rtrim(String.t()) :: String.t()
+  def rtrim(value) when is_binary(value) do
+    String.trim_trailing(value)
+  end
+
+  @doc """
   Get the singular form of an English word.
 
   ## Usage
