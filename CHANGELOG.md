@@ -1,6 +1,11 @@
 # Release Notes for 0.x
 
-## [Unreleased](https://github.com/filipprober/support_elixir/compare/v0.3.3...0.x)
+## [Unreleased](https://github.com/support-elixir/package/compare/v0.4.0...0.x)
+
+## 0.4.0
+
+- Added `Support.String.ltrim/1`
+- Added `Support.String.rtrim/1`
 
 ## 0.3.3
 

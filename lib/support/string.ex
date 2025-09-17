@@ -291,6 +291,7 @@ defmodule Support.String do
       iex> String.ltrim("   Elixir Package   ")
       "Elixir Package   "
   """
+  @doc since: "0.4.0"
   @spec ltrim(String.t()) :: String.t()
   def ltrim(value) when is_binary(value) do
     String.trim_leading(value)
@@ -355,6 +356,7 @@ defmodule Support.String do
       iex> String.rtrim("   Elixir Package   ")
       "   Elixir Package"
   """
+  @doc since: "0.4.0"
   @spec rtrim(String.t()) :: String.t()
   def rtrim(value) when is_binary(value) do
     String.trim_trailing(value)

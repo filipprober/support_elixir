@@ -22,4 +22,4 @@ Full documentation is available at [hexdocs.pm](https://hexdocs.pm/support/).
 
 ## License
 
-Support is licensed under the MIT License. See the [LICENSE](https://github.com/filipprober/support_elixir/blob/0.x/LICENSE) file for details.
+Support is licensed under the MIT License. See the [LICENSE](https://github.com/support-elixir/package/blob/0.x/LICENSE) file for details.
