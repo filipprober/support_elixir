@@ -129,6 +129,15 @@ defmodule StringTest do
     assert "foo bar baz" == String.lower("foO bAr BaZ")
   end
 
+  test "ltrim/1" do
+    assert "foo   bar " == String.ltrim(" foo   bar ")
+    assert "123   " == String.ltrim("   123   ")
+    assert "だ" == String.ltrim("だ")
+    assert "ム" == String.ltrim("ム")
+    assert "だ   " == String.ltrim("   だ   ")
+    assert "ム   " == String.ltrim("ム   ")
+  end
+
   test "plural/1" do
     assert "cats" == String.plural("cat")
     assert "Dogs" == String.plural("Dog")

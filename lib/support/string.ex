@@ -281,6 +281,22 @@ defmodule Support.String do
   end
 
   @doc """
+  Remove all whitespace from the beginning of a string.
+
+  ## Usage
+
+      iex> alias Support.String
+      Support.String
+
+      iex> String.ltrim("   Elixir Package   ")
+      "Elixir Package   "
+  """
+  @spec ltrim(String.t()) :: String.t()
+  def ltrim(value) when is_binary(value) do
+    String.trim_leading(value)
+  end
+
+  @doc """
   Get the plural form of an English word.
 
   ## Usage
